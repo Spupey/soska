@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Заявка принята</title>
+    <title>Заявка получателя</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -20,22 +20,47 @@
             background: white;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
             border-radius: 5px;
-            text-align: center;
         }
         h1 {
-            color: #4CAF50;
+            color: #444;
+            text-align: center;
+            margin-bottom: 30px;
         }
-        a {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
             background: #4CAF50;
             color: white;
-            text-decoration: none;
+            border: none;
+            padding: 12px 20px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
             border-radius: 4px;
         }
-        a:hover {
+        button:hover {
             background: #45a049;
+        }
+        .success-message {
+            text-align: center;
+            padding: 20px;
+            background: #e8f5e9;
+            border-radius: 4px;
+            margin-top: 20px;
+            display: none;
         }
         footer {
             text-align: center;
@@ -47,13 +72,68 @@
 </head>
 <body>
     <div class="container">
-        <h1>Спасибо за вашу заявку!</h1>
-        <p>Мы получили ваши данные и свяжемся с вами в ближайшее время для уточнения деталей.</p>
-        <a href="index.html">Вернуться на главную</a>
+        <h1>Форма заявки</h1>
+        
+        <form id="applicationForm">
+            <div class="form-group">
+                <label for="name">ФИО:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="phone">Телефон:</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="address">Адрес доставки:</label>
+                <textarea id="address" name="address" rows="3" required></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="product">Товар:</label>
+                <select id="product" name="product" required>
+                    <option value="">Выберите товар</option>
+                    <option value="product1">Товар 1</option>
+                    <option value="product2">Товар 2</option>
+                    <option value="product3">Товар 3</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="quantity">Количество:</label>
+                <input type="number" id="quantity" name="quantity" min="1" value="1" required>
+            </div>
+            
+            <button type="submit">Отправить заявку</button>
+        </form>
+        
+        <div class="success-message" id="successMessage">
+            <h2>Спасибо за вашу заявку!</h2>
+            <p>Мы свяжемся с вами в ближайшее время.</p>
+            <a href="index.html">Вернуться на главную</a>
+        </div>
     </div>
     
     <footer>
         <p>© 2023 Простой сервис заявок. Все права защищены.</p>
     </footer>
+    
+    <script>
+        document.getElementById('applicationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Здесь можно добавить код для отправки данных на сервер
+            // В данном примере просто показываем сообщение об успехе
+            
+            document.getElementById('applicationForm').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'block';
+        });
+    </script>
 </body>
 </html>
